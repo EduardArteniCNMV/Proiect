@@ -15,29 +15,22 @@ public:
         return this->marime;
     }
 
-    void add(T* x){
-        cout<<"x size = "<<sizeof(x)/sizeof(T)<<endl;
-        int marimeaX = sizeof(x) + 1;
-        cout<<marimeaX<<endl;
-        cout<<endl;
-        for(int i = 0; i < marimeaX; i++)
-            cout<<x[i]<<" ";
-        cout<<endl;
-
+    void add(T* x, int sizeofx){
         T copieValori[this->limita];
         for(int i = 0; i < this->limita; i++){
             copieValori[i] = this->valori[i];
         }
-        this->valori = new T[limita + marimeaX + 1];
+        this->valori = new T[limita + sizeofx + 1];
         for(int i = 0; i < this->limita; i++){
             this->valori[i] = copieValori[i];
         }
-        this->limita = this->limita + marimeaX + 1;
+        this->limita = this->limita + sizeofx + 1;
 
-        for(int i = 0; i <  marimeaX; i++){
+        for(int i = 0; i <  sizeofx; i++){
             this->valori[i + this->marime] = x[i];
         }
-        this->marime = this->marime + marimeaX;
+        this->marime = this->marime + sizeofx;
+
     }
 
     void add(T x){
@@ -86,17 +79,16 @@ public:
     }
 };
 
+class String{
+
+};
+
 int main(){
 
-    ArrayList<int> test(10);
-    test.add(1);
-    test.add(6);
-    test.add(7);
-    cout<<test.getSize()<<endl;
-    test.print();
-    int v[]= {1,2,3,4,5,6,7,8,9,10,11,12,13,14};
-    test.add(v);
-    cout<<test.getSize()<<endl;
+    ArrayList<bool> test(10);
+    bool v[]= {true,false,false,true,1,2,1,1,1,1,1,0};
+    test.add(v, sizeof(v)/sizeof(bool));
+    test.add(23);
     test.print();
 
     return 0;
